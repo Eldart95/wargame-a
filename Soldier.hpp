@@ -5,7 +5,7 @@
 namespace WarGame{
     class Soldier {
         public:
-        int player;
+        uint player;
         int hp;
         int dmg;
 

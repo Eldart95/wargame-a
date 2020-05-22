@@ -5,12 +5,12 @@ namespace WarGame{
 
     class FootCommander : public Soldier {
         public:
-        FootCommander(int p) ;
+        FootCommander(uint p) ;
         FootCommander();
 
     };
 
-    FootCommander::FootCommander(int p) {
+    FootCommander::FootCommander(uint p) {
         hp=150;
         dmg=20;
         player = p;
