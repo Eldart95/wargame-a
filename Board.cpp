@@ -2,14 +2,12 @@
 
 namespace WarGame{
     bool Board::has_soldiers(uint pn) const {
-
-        for(int i = 0; i < 8 ; i++){
-            for(int j = 0; j < 8; j++){
+        for(int i = 0; i < board.size() ; i++){
+            for(int j = 0; j < board[i].size(); j++){
                 std::pair<int,int> p;
-                p.first = j;
-                p.second = i;
-            
-                if(this->operator[](p)->player==pn) return true;
+                p.first = i;
+                p.second = j;
+                if(board[i][j]!=nullptr && board[i][j]->player==pn) return true;
             }
         }
         return false;
@@ -17,30 +15,18 @@ namespace WarGame{
 
     }
     Soldier*& Board::operator[](std::pair<int,int> location){
-        Soldier* x = new Soldier();
-        board.at(location.first).at(location.second)=x;
-        static int count = 0;
-        if(count<=4){
-            x->player=1;
-            count++;
-        }
-        else if (count>4) x->player=2;
-        static Soldier*& y = x;
-        return y;
+        return this->board[location.first][location.second];
         
     }
 
     Soldier* Board::operator[](std::pair<int,int> location) const{
-        if(board.at(location.first).at(location.second)==nullptr){
-            Soldier x;
-            Soldier*y = &x;
-            return y;
-        }
-        return board.at(location.first).at(location.second);
+        return this->board[location.first][location.second];
         
     }
 
     void Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction){
+        if(source.first<0 || source.second<0) throw;
+        if(source.first>this->board.size() || source.second>this->board.size()) throw;
         return;
     }
 
